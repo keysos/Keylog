@@ -29,9 +29,15 @@ export default function MobileMenu({
       </Button>
 
       <div
-        className={`flexflex-col absolute top-full left-0 z-50 w-full transition-all duration-300 sm:hidden ${isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"}`}
+        className={`flexflex-col absolute top-full left-0 z-50 w-full transition-all duration-300 sm:hidden ${isOpen ? "translate-y-0 opacity-100" : "-transglate-y-2 pointer-events-none opacity-0"}`}
       >
         <div className="bg-background flex flex-col gap-2 border-b-2 p-2">
+          <Link
+            className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-4xl p-2 text-center"
+            href="/login"
+          >
+            Games
+          </Link>
           <Link
             className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-4xl p-2 text-center"
             href="/login"

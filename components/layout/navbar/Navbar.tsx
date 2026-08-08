@@ -3,6 +3,7 @@
 import Link from "next/link";
 import MobileMenu from "./MobileMenu";
 import { useState } from "react";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,11 +15,11 @@ const Navbar = () => {
   return (
     <div className="bg-background relative">
       <nav
-        className={`${isOpen ? "" : "border-border border-b-2"} flex w-full items-center justify-end gap-4 p-2 sm:p-3`}
+        className={`${isOpen ? "" : "border-border border-b-2"} flex w-full items-center justify-end gap-4 p-2 text-sm sm:p-3 sm:text-base`}
       >
         <Link
           href="/games"
-          className="text-muted-foreground hover:text-foreground transition-colors duration-300"
+          className="text-muted-foreground hover:text-foreground hidden transition-colors duration-300 sm:flex"
         >
           Games
         </Link>
@@ -29,11 +30,13 @@ const Navbar = () => {
           Log In
         </Link>
         <Link
-          className="text-muted-foreground hover:text-foreground hidden transition-colors duration-300 sm:flex"
+          className="text-muted-foreground hover:text-foreground focus-ring hidden transition-colors duration-300 sm:flex"
           href="/signup"
         >
           Sign Up
         </Link>
+
+        <SearchBar />
         <MobileMenu
           handleClick={handleClick}
           isOpen={isOpen}
