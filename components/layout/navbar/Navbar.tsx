@@ -9,13 +9,13 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleClick() {
-    setIsOpen((prev) => !isOpen);
+    setIsOpen((prev) => !prev);
   }
 
   return (
     <div className="bg-background relative">
       <nav
-        className={`${isOpen ? "" : "border-border border-b-2"} flex w-full items-center justify-end gap-4 p-2 text-sm sm:p-3 sm:text-base`}
+        className={`${isOpen ? "" : "border-border border-b"} flex w-full items-center justify-end gap-4 p-2 text-sm sm:p-3 sm:text-base`}
       >
         <Link
           href="/games"

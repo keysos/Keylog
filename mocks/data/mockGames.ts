@@ -8,7 +8,8 @@ export const mockGames: Game[] = [
     slug: "resident-evil-4",
     summary:
       "Leon S. Kennedy heads to a remote village in Spain to rescue the president's daughter.",
-    cover_url: "https://placehold.co/264x352?text=Resident+Evil+4",
+    cover_url:
+      "https://images.igdb.com/igdb/image/upload/t_cover_big/co1r7f.jpg",
     release_date: "2023-03-24",
     igdb_rating: 92.5,
     created_at: "2026-08-01T10:00:00Z",
@@ -20,7 +21,8 @@ export const mockGames: Game[] = [
     title: "Baldur's Gate 3",
     slug: "baldurs-gate-3",
     summary: "A party-based RPG set in the world of Dungeons & Dragons.",
-    cover_url: "https://placehold.co/264x352?text=Baldurs+Gate+3",
+    cover_url:
+      "https://images.igdb.com/igdb/image/upload/t_cover_big/co670h.jpg",
     release_date: "2023-08-03",
     igdb_rating: 96.2,
     created_at: "2026-08-01T10:05:00Z",
@@ -33,7 +35,8 @@ export const mockGames: Game[] = [
     slug: "elden-ring",
     summary:
       "Explore a vast fantasy world filled with powerful enemies and mysterious locations.",
-    cover_url: "https://placehold.co/264x352?text=Elden+Ring",
+    cover_url:
+      "https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.jpg",
     release_date: "2022-02-25",
     igdb_rating: 94.8,
     created_at: "2026-08-01T10:10:00Z",
@@ -46,7 +49,8 @@ export const mockGames: Game[] = [
     slug: "the-witcher-3-wild-hunt",
     summary:
       "Geralt of Rivia searches for Ciri while navigating a dangerous open world.",
-    cover_url: "https://placehold.co/264x352?text=The+Witcher+3",
+    cover_url:
+      "https://images.igdb.com/igdb/image/upload/t_cover_big/co1wyy.jpg",
     release_date: "2015-05-19",
     igdb_rating: 93.7,
     created_at: "2026-08-01T10:15:00Z",
@@ -59,7 +63,8 @@ export const mockGames: Game[] = [
     slug: "god-of-war",
     summary:
       "Kratos and his son Atreus journey through the realms of Norse mythology.",
-    cover_url: "https://placehold.co/264x352?text=God+of+War",
+    cover_url:
+      "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.jpg",
     release_date: "2018-04-20",
     igdb_rating: 94.1,
     created_at: "2026-08-01T10:20:00Z",
@@ -72,7 +77,8 @@ export const mockGames: Game[] = [
     slug: "cyberpunk-2077",
     summary:
       "Explore Night City as V, a mercenary searching for a way to become an urban legend.",
-    cover_url: "https://placehold.co/264x352?text=Cyberpunk+2077",
+    cover_url:
+      "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rth.jpg",
     release_date: "2020-12-10",
     igdb_rating: 86.4,
     created_at: "2026-08-01T10:25:00Z",
@@ -85,7 +91,8 @@ export const mockGames: Game[] = [
     slug: "hades",
     summary:
       "Battle your way out of the Underworld in this fast-paced roguelike.",
-    cover_url: "https://placehold.co/264x352?text=Hades",
+    cover_url:
+      "https://images.igdb.com/igdb/image/upload/t_cover_big/co2e3c.jpg",
     release_date: "2020-09-17",
     igdb_rating: 92.1,
     created_at: "2026-08-01T10:30:00Z",
@@ -98,7 +105,8 @@ export const mockGames: Game[] = [
     slug: "minecraft",
     summary:
       "Explore, build, craft, and survive in a procedurally generated world.",
-    cover_url: "https://placehold.co/264x352?text=Minecraft",
+    cover_url:
+      "https://images.igdb.com/igdb/image/upload/t_cover_big/co49x5.jpg",
     release_date: "2011-11-18",
     igdb_rating: 91.3,
     created_at: "2026-08-01T10:35:00Z",
@@ -111,7 +119,8 @@ export const mockGames: Game[] = [
     slug: "red-dead-redemption-2",
     summary:
       "Follow Arthur Morgan and the Van der Linde gang through the American frontier.",
-    cover_url: "https://placehold.co/264x352?text=Red+Dead+Redemption+2",
+    cover_url:
+      "https://images.igdb.com/igdb/image/upload/t_cover_big/co1q1f.jpg",
     release_date: "2018-10-26",
     igdb_rating: 95.4,
     created_at: "2026-08-01T10:40:00Z",
@@ -124,7 +133,8 @@ export const mockGames: Game[] = [
     slug: "grand-theft-auto-v",
     summary:
       "Experience the lives of three criminals navigating the criminal underworld of Los Santos.",
-    cover_url: "https://placehold.co/264x352?text=GTA+V",
+    cover_url:
+      "https://images.igdb.com/igdb/image/upload/t_cover_big/co1wz4.jpg",
     release_date: "2013-09-17",
     igdb_rating: 91.8,
     created_at: "2026-08-01T10:45:00Z",
@@ -136,7 +146,8 @@ export const mockGames: Game[] = [
     title: "The Last of Us Part I",
     slug: "the-last-of-us-part-i",
     summary: "Joel and Ellie travel across a post-apocalyptic United States.",
-    cover_url: "https://placehold.co/264x352?text=The+Last+of+Us",
+    cover_url:
+      "https://images.igdb.com/igdb/image/upload/t_cover_big/co5s5.jpg",
     release_date: "2022-09-02",
     igdb_rating: 91.7,
     created_at: "2026-08-01T10:50:00Z",
@@ -149,7 +160,8 @@ export const mockGames: Game[] = [
     slug: "sekiro-shadows-die-twice",
     summary:
       "A shinobi seeks revenge against those who kidnapped his master and left him for dead.",
-    cover_url: "https://placehold.co/264x352?text=Sekiro",
+    cover_url:
+      "https://images.igdb.com/igdb/image/upload/t_cover_big/co2a0f.jpg",
     release_date: "2019-03-22",
     igdb_rating: 91.9,
     created_at: "2026-08-01T10:55:00Z",

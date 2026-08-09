@@ -33,19 +33,19 @@ export default function MobileMenu({
       >
         <div className="bg-background flex flex-col gap-2 border-b-2 p-2">
           <Link
-            className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-4xl p-2 text-center"
+            className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-sm p-2 text-center"
             href="/login"
           >
             Games
           </Link>
           <Link
-            className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-4xl p-2 text-center"
+            className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-sm p-2 text-center"
             href="/login"
           >
             Log In
           </Link>
           <Link
-            className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-4xl p-2 text-center"
+            className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-sm p-2 text-center"
             href="/signup"
           >
             Sign Up
