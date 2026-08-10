@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import SearchBar from "./SearchBar";
 
 import Link from "next/link";
 
@@ -36,12 +37,6 @@ export default function MobileMenu({
             className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-sm p-2 text-center"
             href="/login"
           >
-            Games
-          </Link>
-          <Link
-            className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-sm p-2 text-center"
-            href="/login"
-          >
             Log In
           </Link>
           <Link
@@ -50,6 +45,8 @@ export default function MobileMenu({
           >
             Sign Up
           </Link>
+
+          <SearchBar />
         </div>
       </div>
     </div>

@@ -13,7 +13,6 @@ export const mockGames: Game[] = [
     release_date: "2023-03-24",
     igdb_rating: 92.5,
     created_at: "2026-08-01T10:00:00Z",
-    updated_at: "2026-08-01T10:00:00Z",
   },
   {
     id: 2,
@@ -26,7 +25,6 @@ export const mockGames: Game[] = [
     release_date: "2023-08-03",
     igdb_rating: 96.2,
     created_at: "2026-08-01T10:05:00Z",
-    updated_at: "2026-08-01T10:05:00Z",
   },
   {
     id: 3,
@@ -40,7 +38,6 @@ export const mockGames: Game[] = [
     release_date: "2022-02-25",
     igdb_rating: 94.8,
     created_at: "2026-08-01T10:10:00Z",
-    updated_at: "2026-08-01T10:10:00Z",
   },
   {
     id: 4,
@@ -54,7 +51,6 @@ export const mockGames: Game[] = [
     release_date: "2015-05-19",
     igdb_rating: 93.7,
     created_at: "2026-08-01T10:15:00Z",
-    updated_at: "2026-08-01T10:15:00Z",
   },
   {
     id: 5,
@@ -68,7 +64,6 @@ export const mockGames: Game[] = [
     release_date: "1995-03-11",
     igdb_rating: 92.0,
     created_at: "2026-08-01T10:20:00Z",
-    updated_at: "2026-08-01T10:20:00Z",
   },
   {
     id: 6,
@@ -82,7 +77,6 @@ export const mockGames: Game[] = [
     release_date: "2020-09-17",
     igdb_rating: 92.1,
     created_at: "2026-08-01T10:25:00Z",
-    updated_at: "2026-08-01T10:25:00Z",
   },
   {
     id: 7,
@@ -96,7 +90,6 @@ export const mockGames: Game[] = [
     release_date: "2018-10-26",
     igdb_rating: 95.4,
     created_at: "2026-08-01T10:30:00Z",
-    updated_at: "2026-08-01T10:30:00Z",
   },
   {
     id: 8,
@@ -110,7 +103,6 @@ export const mockGames: Game[] = [
     release_date: "2011-11-18",
     igdb_rating: 91.3,
     created_at: "2026-08-01T10:35:00Z",
-    updated_at: "2026-08-01T10:35:00Z",
   },
   {
     id: 9,
@@ -124,7 +116,6 @@ export const mockGames: Game[] = [
     release_date: "2020-12-10",
     igdb_rating: 86.4,
     created_at: "2026-08-01T10:40:00Z",
-    updated_at: "2026-08-01T10:40:00Z",
   },
   {
     id: 10,
@@ -134,11 +125,10 @@ export const mockGames: Game[] = [
     summary:
       "James Sunderland travels to the mysterious town of Silent Hill after receiving a letter from his deceased wife.",
     cover_url:
-      "https://images.igdb.com/igdb/image/upload/t_cover_big/co7n1l.jpg",
+      "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/coavaf.jpg",
     release_date: "2024-10-08",
     igdb_rating: 86.0,
     created_at: "2026-08-01T10:45:00Z",
-    updated_at: "2026-08-01T10:45:00Z",
   },
   {
     id: 11,
@@ -152,7 +142,6 @@ export const mockGames: Game[] = [
     release_date: "2019-03-22",
     igdb_rating: 91.9,
     created_at: "2026-08-01T10:50:00Z",
-    updated_at: "2026-08-01T10:50:00Z",
   },
   {
     id: 12,
@@ -166,6 +155,5 @@ export const mockGames: Game[] = [
     release_date: "2013-09-17",
     igdb_rating: 91.8,
     created_at: "2026-08-01T10:55:00Z",
-    updated_at: "2026-08-01T10:55:00Z",
   },
 ];

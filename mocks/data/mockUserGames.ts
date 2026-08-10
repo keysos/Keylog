@@ -40,7 +40,7 @@ export const mockUserGames: UserGame[] = [
   {
     id: 4,
     user_id: 2,
-    game_id: 1,
+    game_id: 7,
     status: "playing",
     rating: null,
     is_favorite: false,
