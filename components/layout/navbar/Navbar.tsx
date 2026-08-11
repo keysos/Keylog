@@ -41,7 +41,7 @@ const Navbar = () => {
             Log In
           </Link>
           <Link
-            className="text-muted-foreground hover:text-foreground focus-ring hidden transition-colors duration-300 sm:flex"
+            className="text-muted-foreground hover:text-foreground hidden transition-colors duration-300 sm:flex"
             href="/signup"
           >
             Sign Up

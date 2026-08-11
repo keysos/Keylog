@@ -29,6 +29,7 @@
     "zustand": "^5.0.14"
   },
   "devDependencies": {
+    "@bns2/eslint-plugin-tailwind-v4": "^1.0.8",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

@@ -52,6 +52,7 @@ const Login = () => {
                 type="email"
                 placeholder="Email"
                 disabled={isSubmitting}
+                className="text-sm sm:text-base sm:placeholder:text-base"
               />
               {errors.email && (
                 <p className="text-destructive text-sm">
@@ -68,6 +69,7 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   disabled={isSubmitting}
+                  className="text-sm sm:text-base sm:placeholder:text-base"
                 />
                 <Button
                   variant={"ghost"}
@@ -90,7 +92,11 @@ const Login = () => {
           {errors.root && (
             <p className="text-destructive text-sm">{errors.root.message}</p>
           )}
-          <Button disabled={isSubmitting} type="submit" className={"w-full"}>
+          <Button
+            disabled={isSubmitting}
+            type="submit"
+            className={"w-full sm:text-base"}
+          >
             {isSubmitting ? (
               <div className="flex items-center gap-2">
                 <div className="border-primary-foreground h-4 w-4 animate-spin rounded-full border-2 border-t-transparent" />
@@ -102,11 +108,14 @@ const Login = () => {
           </Button>
         </form>
 
-        <div className="flex flex-col text-center">
-          <Link href="/signup" className="hover:text-foreground">
+        <div className="flex flex-col gap-1 text-center">
+          <Link
+            href="/signup"
+            className="hover:text-foreground text-sm sm:text-base"
+          >
             No account? Sign up here
           </Link>
-          <Link href="/" className="hover:text-foreground">
+          <Link href="/" className="hover:text-foreground text-sm sm:text-base">
             Forgot your password? Reset
           </Link>
         </div>
