@@ -1,10 +1,22 @@
+"use client";
+
+/* Hooks */
+
 import { useState } from "react";
+
+/* Components */
 import { Button } from "@/components/ui/button";
-import type { Review, Game, User } from "@/mocks/types";
-import Link from "next/link";
-import Image from "next/image";
 import { RatingStars } from "@/components/games/RatingStars";
 import placeholder from "@/assets/placeholder.png";
+
+/* Types */
+
+import type { Review, Game, User } from "@/mocks/types";
+
+/* Next.js */
+
+import Link from "next/link";
+import Image from "next/image";
 
 type ReviewCardProps = {
   review: Review;

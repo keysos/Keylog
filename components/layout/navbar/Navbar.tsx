@@ -4,27 +4,24 @@ import Link from "next/link";
 import MobileMenu from "./MobileMenu";
 import logo from "@/assets/logo.svg";
 import { useState } from "react";
-import { useAuthStore } from "@/stores/authStore";
 import Image from "next/image";
 import SearchBar from "./SearchBar";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const isLogged = useAuthStore((state) => state.isLogged);
+  const isLogged = true;
 
   function handleClick() {
     setIsOpen((prev) => !prev);
   }
 
   return (
-    <div
-      className={`bg-background relative ${isOpen ? "" : "border-border border-b"}`}
-    >
+    <div className="bg-background relative">
       <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-2 text-sm sm:px-0 sm:py-3 sm:text-base">
         {isLogged && (
           <Link href="/">
-            <Image src={logo} alt="Keylog" className="h-10 w-18" />
+            <Image src={logo} alt="Keylog" className="h-8 w-18" />
           </Link>
         )}
 
