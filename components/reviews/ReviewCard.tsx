@@ -6,7 +6,7 @@ import { useState } from "react";
 
 /* Components */
 import { Button } from "@/components/ui/button";
-import { RatingStars } from "@/components/games/RatingStars";
+import { RatingStars } from "@/app/games/components/RatingStars";
 import placeholder from "@/assets/placeholder.png";
 
 /* Types */

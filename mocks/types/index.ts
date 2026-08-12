@@ -23,6 +23,19 @@ export interface Game {
   created_at: string;
 }
 
+export interface IGDBGame {
+  id: number;
+  name: string;
+  slug: string;
+  summary?: string;
+  cover?: {
+    url: string;
+  };
+  first_release_date?: number;
+  total_rating?: number;
+  total_rating_count?: number;
+}
+
 export interface UserGame {
   id: number;
   user_id: number;

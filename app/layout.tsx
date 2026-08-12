@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-import Navbar from "@/components/layout/navbar/Navbar";
+import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
