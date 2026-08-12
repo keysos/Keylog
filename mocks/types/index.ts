@@ -9,7 +9,6 @@ export interface User {
   bio: string | null;
   avatar_url: string | null;
   created_at: string;
-  updated_at: string;
 }
 
 export interface Game {
@@ -22,7 +21,6 @@ export interface Game {
   release_date: string | null;
   igdb_rating: number | null;
   created_at: string;
-  updated_at: string;
 }
 
 export interface UserGame {
@@ -42,6 +40,7 @@ export interface Review {
   id: number;
   user_id: number;
   game_id: number;
+  rating: number;
   content: string;
   created_at: string;
   updated_at: string;
