@@ -52,7 +52,11 @@ const sortQueries: Record<GameSort, string> = {
   game_title: "name asc",
 };
 
-export async function getGames(sort: GameSort): Promise<IGDBGame[]> {
+export async function getGames(
+  sort: GameSort,
+  currentPage: number,
+  limit: number,
+): Promise<{ games: IGDBGame[]; totalGames: number }> {
   const query = `
     fields
       id,
@@ -65,39 +69,59 @@ export async function getGames(sort: GameSort): Promise<IGDBGame[]> {
       total_rating,
       total_rating_count,
       summary;
+
+    where cover != null;
     
     sort ${sortQueries[sort]};
 
-    limit 60;
+    limit ${limit};
+    offset ${(currentPage - 1) * limit};
   
   `;
   const access_token = await getIGDBToken();
 
-  const response = await fetch(`${IGDB_URL}/games`, {
-    method: "POST",
-    headers: {
-      "Client-ID": process.env.IGDB_CLIENT_ID!,
-      Authorization: `Bearer ${access_token}`,
-      "Content-Type": "text/plain",
-    },
-    body: query,
-  });
+  const [gamesResponse, countResponse] = await Promise.all([
+    fetch(`${IGDB_URL}/games`, {
+      method: "POST",
+      headers: {
+        "Client-ID": process.env.IGDB_CLIENT_ID!,
+        Authorization: `Bearer ${access_token}`,
+        "Content-Type": "text/plain",
+      },
+      body: query,
+    }),
 
-  if (!response.ok) {
-    throw new Error(`IGDB request failed: ${response.status}`);
+    fetch(`${IGDB_URL}/games/count`, {
+      method: "POST",
+      headers: {
+        "Client-ID": process.env.IGDB_CLIENT_ID!,
+        Authorization: `Bearer ${access_token}`,
+        "Content-Type": "text/plain",
+      },
+      body: `
+        where cover != null;
+        count;
+      `,
+    }),
+  ]);
+
+  if (!gamesResponse || !countResponse) {
+    throw new Error(`IGDB request failed: ${gamesResponse.status}`);
   }
 
-  const data: IGDBGame[] = await response.json();
+  const data: IGDBGame[] = await gamesResponse.json();
+  const { count } = await countResponse.json();
 
-  const games = data
-    .filter((game) => !!game.cover?.url)
-    .map((game) => ({
-      ...game,
-      cover: {
-        ...game.cover,
-        url: normalizeIGDBImage(game.cover!.url),
-      },
-    }));
+  const games = data.map((game) => ({
+    ...game,
+    cover: {
+      ...game.cover,
+      url: normalizeIGDBImage(game.cover!.url),
+    },
+  }));
 
-  return games;
+  return {
+    games: games,
+    totalGames: count,
+  };
 }

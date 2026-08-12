@@ -4,17 +4,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { mockGames } from "@/mocks/data/mockGames";
 import placeholder from "@/assets/placeholder.png";
+import { Button } from "@/components/ui/button";
 
 const TrendingGames = () => {
   return (
-    <div className="border-b-border space-y-2">
-      <div className="flex items-center justify-between">
+    <div className="border-b-border">
+      <div className="flex items-center justify-between py-1">
         <h2 className="text-lg">Recently trending</h2>
-        <Link href="/">
-          <span className="text-muted-foreground hover:text-foreground">
+        <Button variant={"link"}>
+          <Link href="/games" className="text-muted-foreground">
             See more
-          </span>
-        </Link>
+          </Link>
+        </Button>
       </div>
 
       <div className="flex justify-between gap-2 sm:gap-4 md:gap-6">

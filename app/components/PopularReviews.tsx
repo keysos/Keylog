@@ -5,17 +5,18 @@ import { mockUsers } from "@/mocks/data/mockUsers";
 import { mockGames } from "@/mocks/data/mockGames";
 
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const PopularReviews = () => {
   return (
     <div className="flex flex-col">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between py-1">
         <h2 className="text-lg">Popular reviews</h2>
-        <Link href="/">
-          <span className="text-muted-foreground hover:text-foreground">
+        <Button variant={"link"}>
+          <Link href="/games" className="text-muted-foreground">
             See more
-          </span>
-        </Link>
+          </Link>
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-2">
