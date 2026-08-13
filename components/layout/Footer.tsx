@@ -2,7 +2,7 @@ import { FaGithub, FaLinkedin, FaFreeCodeCamp } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="text-muted-foreground bg-card border-border mt-2 border-t text-sm sm:text-base">
+    <div className="text-muted-foreground bg-card border-border border-t text-sm sm:text-base">
       <div className="flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-4 py-6 sm:mx-auto sm:flex-row">
         {`© ${new Date().getFullYear()} Keylog • v1.0 • Powered by IGDB`}
 

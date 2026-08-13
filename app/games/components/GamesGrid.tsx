@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { IGDBGame } from "@/lib/igdb";
+import { IGDBGame } from "@/lib/igdb/type";
 
 type GamesGridProps = {
   games: IGDBGame[];
@@ -14,7 +14,7 @@ const GamesGrid = ({ games }: GamesGridProps) => {
           <Link
             href={`games/${game.slug}`}
             key={game.id}
-            className="bg-muted relative flex aspect-3/4 items-center overflow-hidden"
+            className="bg-muted border-border group relative flex aspect-3/4 items-center overflow-hidden rounded-sm border"
           >
             <Image
               src={game.cover?.url ?? ""}
@@ -31,8 +31,12 @@ const GamesGrid = ({ games }: GamesGridProps) => {
               alt={game.name}
               fill
               sizes="150px"
-              className="border-border rounded-sm border object-contain"
+              className="object-contain"
             />
+
+            <div className="absolute inset-0 flex items-center justify-center bg-black/80 p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <span className="text-center font-semibold">{game.name}</span>
+            </div>
           </Link>
         );
       })}

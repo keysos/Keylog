@@ -16,7 +16,7 @@ export default function MobileMenu({
   isOpen,
 }: MobileMenuProps) {
   return (
-    <div>
+    <div className="sm:hidden">
       <Button variant={"ghost"} className={className} onClick={handleClick}>
         <Menu
           className={`h-5 w-5 transition-transform duration-300 ${isOpen ? "-rotate-90" : ""}`}

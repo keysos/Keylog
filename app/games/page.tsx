@@ -1,6 +1,6 @@
 import GamesGrid from "./components/GamesGrid";
 
-import { GameSort, getGames } from "@/lib/igdb";
+import { GameSort, getGames } from "@/lib/igdb/games";
 import GamesSort from "./components/GamesSort";
 import { GamesPagination } from "./components/GamesPagination";
 
@@ -26,17 +26,21 @@ const Games = async ({ searchParams }: GamesProps) => {
   );
 
   return (
-    <div className="mx-auto mt-6 flex w-full max-w-6xl flex-col gap-3 px-4">
+    <div className="mx-auto mt-6 flex w-full max-w-6xl flex-col gap-3 px-4 sm:px-0">
       <div className="text-muted-foreground flex items-center justify-between">
-        <span>{totalGames} games</span>
+        <span className="flex h-full flex-col justify-end">
+          {totalGames} games
+        </span>
         <GamesSort defaultValue="popularity" />
       </div>
 
       <GamesGrid games={games} />
-      <GamesPagination
-        currentPage={currentPage}
-        totalPages={Math.ceil(totalGames / LIMIT)}
-      />
+      <div className="mb-6">
+        <GamesPagination
+          currentPage={currentPage}
+          totalPages={Math.ceil(totalGames / LIMIT)}
+        />
+      </div>
     </div>
   );
 };

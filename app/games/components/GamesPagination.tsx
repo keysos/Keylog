@@ -45,6 +45,8 @@ export function GamesPagination({
         onClick={() => goToPage(String(currentPage - 1))}
         disabled={currentPage === 1}
         variant={"secondary"}
+        size={"icon-sm"}
+        className={"sm:size-10 sm:px-3 sm:text-sm"}
       >
         <ChevronLeft />
       </Button>
@@ -55,6 +57,8 @@ export function GamesPagination({
             <Button
               variant={currentPage === 1 ? "default" : "secondary"}
               onClick={() => goToPage("1")}
+              size="sm"
+              className={"sm:size-10 sm:px-3 sm:text-sm"}
             >
               1
             </Button>
@@ -67,6 +71,8 @@ export function GamesPagination({
             key={page}
             variant={page === currentPage ? "default" : "secondary"}
             onClick={() => goToPage(String(page))}
+            size={"icon-sm"}
+            className={"sm:size-10 sm:px-3 sm:text-sm"}
           >
             {page}
           </Button>
@@ -77,6 +83,8 @@ export function GamesPagination({
             <Button
               variant={currentPage === totalPages ? "default" : "secondary"}
               onClick={() => goToPage(String(totalPages))}
+              size={"sm"}
+              className={"sm:h-10 sm:w-14 sm:px-3 sm:text-sm"}
             >
               {totalPages}
             </Button>
@@ -88,6 +96,8 @@ export function GamesPagination({
         onClick={() => goToPage(String(currentPage + 1))}
         disabled={currentPage === totalPages}
         variant={"secondary"}
+        size={"icon-sm"}
+        className={"sm:size-10 sm:px-3 sm:text-sm"}
       >
         <ChevronRight />
       </Button>
