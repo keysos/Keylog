@@ -4,12 +4,18 @@ import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { searchGames } from "@/lib/igdb/actions";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Button } from "../ui/button";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [games, setGames] = useState<IGDBGame[]>([]);
 
-  function handleClick() {}
+  const router = useRouter();
+
+  function handleClick() {
+    router.replace(`/search?q=${encodeURIComponent(query)}`);
+  }
 
   useEffect(() => {
     if (query.trim().length < 3) {
@@ -34,13 +40,17 @@ const SearchBar = () => {
         value={query}
         className="focus-none! rounded-xs text-sm md:text-base [&::-webkit-search-cancel-button]:appearance-none"
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && handleClick()}
       />
-      <button
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon"
         onClick={handleClick}
-        className="focus-none! absolute top-1/2 right-0 -translate-y-1/2 p-3"
+        className="absolute top-1/2 right-0 -translate-y-1/2 hover:bg-transparent"
       >
         <Search className="text-muted-foreground size-4" />
-      </button>
+      </Button>
 
       {query.trim().length >= 3 && games.length > 0 && (
         <div className="absolute inset-x-0 top-full z-20 flex max-h-60 w-full flex-col overflow-y-auto">

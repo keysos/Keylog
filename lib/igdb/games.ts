@@ -134,10 +134,14 @@ export async function SearchGame(
     name,
     slug,
     game_type,
-    total_rating_count;
+    cover.url,
+    total_rating_count,
+    platforms.id,
+    platforms.name;
 
   where version_parent = null
-    & game_type = (0, 1, 2, 4, 6, 8, 9, 10, 11);
+    & game_type = (0, 1, 2, 4, 6, 8, 9, 10, 11)
+    & cover.url != null;
 
   limit ${limit};
 `;
@@ -159,7 +163,18 @@ export async function SearchGame(
 
   const data: IGDBGame[] = await response.json();
 
-  return data.sort(
+  const games = data.map((game) => ({
+    ...game,
+
+    cover: game.cover
+      ? {
+          ...game.cover,
+          url: normalizeIGDBImage(game.cover.url),
+        }
+      : undefined,
+  }));
+
+  return games.sort(
     (a, b) => (b.total_rating_count ?? 0) - (a.total_rating_count ?? 0),
   );
 }

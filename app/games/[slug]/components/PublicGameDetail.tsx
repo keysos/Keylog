@@ -35,7 +35,7 @@ const PublicGameDetail = ({ game }: PublicGameDetailProps) => {
   return (
     <main className="w-full p-2">
       {/* Card */}
-      <div className="bg-card border-border mx-auto flex h-auto max-w-6xl flex-col rounded-sm border">
+      <div className="border-border mx-auto flex h-auto max-w-6xl flex-col rounded-sm border">
         {/* Game cover and Title */}
         <div
           className="relative min-h-60 bg-cover bg-center bg-no-repeat py-12 sm:px-6"
@@ -45,7 +45,7 @@ const PublicGameDetail = ({ game }: PublicGameDetailProps) => {
         >
           <div className="absolute inset-0 bg-black/80"></div>
 
-          <div className="from-card absolute inset-x-0 bottom-0 h-26 bg-linear-to-t to-transparent"></div>
+          <div className="from-background absolute inset-x-0 bottom-0 h-26 bg-linear-to-t to-transparent"></div>
 
           <div className="relative z-10 flex w-full items-center gap-8 px-2 sm:px-0">
             <Image
