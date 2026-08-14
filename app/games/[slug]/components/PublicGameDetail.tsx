@@ -35,7 +35,7 @@ const PublicGameDetail = ({ game }: PublicGameDetailProps) => {
   return (
     <main className="w-full p-2">
       {/* Card */}
-      <div className="bg-card border-border mx-auto flex h-full max-w-6xl flex-col rounded-sm border">
+      <div className="bg-card border-border mx-auto flex h-auto max-w-6xl flex-col rounded-sm border">
         {/* Game cover and Title */}
         <div
           className="relative min-h-60 bg-cover bg-center bg-no-repeat py-12 sm:px-6"
@@ -53,14 +53,14 @@ const PublicGameDetail = ({ game }: PublicGameDetailProps) => {
               width={300}
               height={300}
               alt={game.name}
-              className="border-border h-auto w-1/3 rounded-sm border object-contain shadow-2xl shadow-black/40"
+              className="border-border h-auto w-1/3 rounded-sm border object-contain shadow-2xl shadow-black/40 sm:w-1/6"
             />
 
             <div className="w-full space-y-2">
-              <h1 className="text-2xl font-bold sm:text-6xl">{game.name}</h1>
+              <h1 className="text-2xl font-bold sm:text-4xl">{game.name}</h1>
               <span className="text-base sm:text-2xl">
                 {game.first_release_date
-                  ? new Date(game.first_release_date).getFullYear()
+                  ? new Date(game.first_release_date * 1000).getFullYear()
                   : ""}
                 {" • "}
                 <span className="text-muted-foreground">

@@ -38,8 +38,8 @@ const ReviewCard = ({ review, game, user }: ReviewCardProps) => {
             src={game?.cover_url ?? placeholder}
             alt={game?.title}
             className="border-border w-full rounded-sm border-2"
-            width={60}
-            height={80}
+            width={300}
+            height={300}
           />
         </Link>
       </div>
@@ -54,11 +54,12 @@ const ReviewCard = ({ review, game, user }: ReviewCardProps) => {
         <div className="text-muted-foreground text-sm">
           <p className={isExpanded ? "" : "line-clamp-3"}>{review.content}</p>
 
-          <div className="flex justify-end">
+          <div className="flex justify-end lg:hidden">
             <Button
               type="button"
               onClick={() => setIsExpanded((prev) => !prev)}
               variant={"ghost"}
+              className={"hover:bg-transparent"}
             >
               {isExpanded ? "Collapse" : "Expand"}
             </Button>
