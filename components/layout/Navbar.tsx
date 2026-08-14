@@ -52,7 +52,9 @@ const Navbar = () => {
             Sign Up
           </Link>
 
-          <SearchBar />
+          <div className="hidden sm:block">
+            <SearchBar />
+          </div>
 
           <MobileMenu
             handleClick={handleClick}

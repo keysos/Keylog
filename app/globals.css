@@ -177,3 +177,28 @@ input:-webkit-autofill:active {
     background-color 5000s ease-in-out 0s,
     color 5000s ease-in-out 0s;
 }
+
+@utility focus-none {
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+    border-color: var(--border);
+  }
+}
+
+* {
+  scrollbar-color: var(--muted-foreground) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--muted-foreground);
+  border-radius: 9999px;
+}

@@ -121,3 +121,45 @@ export async function getGames(
     totalGames: count,
   };
 }
+
+export async function SearchGame(
+  gameQuery: string,
+  limit: number,
+): Promise<IGDBGame[]> {
+  const query = `
+  search "${gameQuery}";
+
+  fields
+    id,
+    name,
+    slug,
+    game_type,
+    total_rating_count;
+
+  where version_parent = null
+    & game_type = (0, 1, 2, 4, 6, 8, 9, 10, 11);
+
+  limit ${limit};
+`;
+  const access_token = await getIGDBToken();
+
+  const response = await fetch(`${IGDB_URL}/games`, {
+    method: "POST",
+    headers: {
+      "Client-ID": process.env.IGDB_CLIENT_ID!,
+      Authorization: `Bearer ${access_token}`,
+      "Content-Type": "text/plain",
+    },
+    body: query,
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch search query in API");
+  }
+
+  const data: IGDBGame[] = await response.json();
+
+  return data.sort(
+    (a, b) => (b.total_rating_count ?? 0) - (a.total_rating_count ?? 0),
+  );
+}

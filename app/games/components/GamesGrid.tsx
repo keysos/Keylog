@@ -12,7 +12,7 @@ const GamesGrid = ({ games }: GamesGridProps) => {
       {games.map((game) => {
         return (
           <Link
-            href={`games/${game.slug}`}
+            href={`/games/${game.slug}`}
             key={game.id}
             className="bg-muted border-border group relative flex aspect-3/4 items-center overflow-hidden rounded-sm border"
           >

@@ -1,5 +1,6 @@
 import { getGames } from "@/lib/igdb/games";
 import PublicGameDetail from "./components/PublicGameDetail";
+import LoggedInGameDetail from "./components/LoggedInGameDetail";
 
 type GameDetailProps = {
   params: Promise<{
@@ -15,7 +16,7 @@ const GameDetail = async ({ params }: GameDetailProps) => {
   const game = games[0];
 
   /* Add placeholder here later */
-  return <PublicGameDetail game={game} />;
+  return <LoggedInGameDetail game={game} />;
 };
 
 export default GameDetail;

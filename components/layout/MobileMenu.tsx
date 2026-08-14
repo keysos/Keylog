@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import SearchBar from "./SearchBar";
 
 import Link from "next/link";
+import SearchBar from "./SearchBar";
 
 type MobileMenuProps = {
   className: string;
@@ -40,7 +40,9 @@ export default function MobileMenu({
             Sign Up
           </Link>
 
-          <SearchBar />
+          <div>
+            <SearchBar />
+          </div>
         </div>
       </div>
     </div>

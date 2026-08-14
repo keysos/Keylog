@@ -5,8 +5,6 @@ import { IGDBGame } from "@/lib/igdb/type";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Games from "../../page";
-import { Collapse } from "@hugeicons/core-free-icons";
 
 type PublicGameDetailProps = {
   game: IGDBGame;
@@ -23,21 +21,24 @@ const PublicGameDetail = ({ game }: PublicGameDetailProps) => {
     (company) => company.publisher,
   );
 
-  const artwork = game.artworks?.find((artwork) => {
-    if (!artwork.width || !artwork.height) return false;
+  const artwork = game.artworks
+    ?.filter((artwork) => artwork.width && artwork.height)
+    .sort((a, b) => {
+      const targetRatio = 16 / 9;
 
-    const ratio = artwork.width / artwork.height;
+      const aDifference = Math.abs(a.width! / a.height! - targetRatio);
+      const bDifference = Math.abs(b.width! / b.height! - targetRatio);
 
-    return ratio >= 1.7 && ratio <= 2.5;
-  });
+      return aDifference - bDifference;
+    })[0];
 
   return (
     <main className="w-full p-2">
       {/* Card */}
-      <div className="bg-card border-border mx-auto flex h-full max-w-6xl flex-col rounded-sm border shadow-xl drop-shadow-black">
+      <div className="bg-card border-border mx-auto flex h-full max-w-6xl flex-col rounded-sm border">
         {/* Game cover and Title */}
         <div
-          className="relative flex min-h-60 bg-cover bg-center bg-no-repeat py-12 sm:px-6"
+          className="relative min-h-60 bg-cover bg-center bg-no-repeat py-12 sm:px-6"
           style={{
             backgroundImage: `url("${artwork?.url}")`,
           }}
@@ -46,13 +47,13 @@ const PublicGameDetail = ({ game }: PublicGameDetailProps) => {
 
           <div className="from-card absolute inset-x-0 bottom-0 h-26 bg-linear-to-t to-transparent"></div>
 
-          <div className="relative z-10 flex w-full items-center gap-8 px-2 sm:p-0">
+          <div className="relative z-10 flex w-full items-center gap-8 px-2 sm:px-0">
             <Image
               src={game.cover?.url ?? ""}
               width={300}
               height={300}
               alt={game.name}
-              className="border-border h-auto w-1/3 rounded-sm border object-contain shadow-2xl shadow-black/40 sm:max-w-1/2"
+              className="border-border h-auto w-1/3 rounded-sm border object-contain shadow-2xl shadow-black/40"
             />
 
             <div className="w-full space-y-2">
@@ -69,7 +70,7 @@ const PublicGameDetail = ({ game }: PublicGameDetailProps) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-8 px-2 pb-6 sm:flex-row sm:px-6 sm:pr-4">
+        <div className="flex flex-col gap-8 px-2 pb-6 sm:flex-row sm:px-6">
           {/* Button and Game details */}
           <div className="flex flex-col gap-4 sm:w-1/3">
             <div className="bg-secondary border-border flex flex-wrap items-center justify-center rounded-sm border p-2">
@@ -103,10 +104,8 @@ const PublicGameDetail = ({ game }: PublicGameDetailProps) => {
                   </span>
                 </div>
 
-                <div>
-                  <span className="text-muted-foreground sm:text-lg">
-                    Platforms
-                  </span>
+                <div className="flex flex-col sm:text-lg">
+                  <span className="text-muted-foreground">Platforms</span>
                   <span>
                     {game.platforms
                       ?.map((platform) => platform.name)
@@ -124,7 +123,7 @@ const PublicGameDetail = ({ game }: PublicGameDetailProps) => {
               About
             </h2>
 
-            <p className={isExpanded ? "line-clamp-3" : ""}>{game.summary}</p>
+            <p className={isExpanded ? "" : "line-clamp-3"}>{game.summary}</p>
 
             <div className="flex items-center sm:hidden">
               <div className="bg-secondary h-0.5 w-full"></div>
@@ -132,7 +131,7 @@ const PublicGameDetail = ({ game }: PublicGameDetailProps) => {
                 variant={"ghost"}
                 onClick={() => setIsExpanded((prev) => !prev)}
               >
-                {isExpanded ? "Show more" : "Collapse"}
+                {isExpanded ? "Collapse" : "Show more"}
               </Button>
             </div>
           </div>
