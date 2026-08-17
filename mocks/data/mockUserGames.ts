@@ -73,4 +73,30 @@ export const mockUserGames: UserGame[] = [
     created_at: "2026-07-10T15:00:00Z",
     updated_at: "2026-07-18T20:00:00Z",
   },
+
+  // Keysos extra games
+  {
+    id: 7,
+    user_id: 1,
+    game_id: 4,
+    status: "completed",
+    rating: 8,
+    is_favorite: false,
+    started_at: "2026-06-15T17:00:00Z",
+    completed_at: "2026-06-22T21:00:00Z",
+    created_at: "2026-06-15T17:00:00Z",
+    updated_at: "2026-06-22T21:00:00Z",
+  },
+  {
+    id: 8,
+    user_id: 1,
+    game_id: 5,
+    status: "backlog",
+    rating: null,
+    is_favorite: false,
+    started_at: null,
+    completed_at: null,
+    created_at: "2026-08-10T14:00:00Z",
+    updated_at: "2026-08-10T14:00:00Z",
+  },
 ];

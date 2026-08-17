@@ -75,7 +75,7 @@ const UserOverview = () => {
                     <Image
                       src={game?.cover_url ?? placeholder}
                       alt={game?.title ?? "No game"}
-                      className="border-border object-fit rounded-sm border-2"
+                      className="border-border rounded-sm border-2"
                       width={80}
                       height={100}
                     />

@@ -1,8 +1,5 @@
-import LoggedInHome from "./components/LoggedInHome";
-import PublicHome from "./components/PublicHome";
+import Home from "./components/Home";
 
-export default function Home() {
-  const isLogged = true;
-
-  return isLogged ? <LoggedInHome /> : <PublicHome />;
+export default function Homepage() {
+  return <Home isLoggedIn={false} />;
 }

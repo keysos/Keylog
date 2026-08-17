@@ -3,13 +3,15 @@
 import { Button } from "@/components/ui/button";
 import { IGDBGame } from "@/lib/igdb/type";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
-type LoggedInGameDetailProps = {
+type GameDetailCardProps = {
   game: IGDBGame;
+  isLoggedIn: boolean;
 };
 
-const LoggedInGameDetail = ({ game }: LoggedInGameDetailProps) => {
+const GameDetailCard = ({ game, isLoggedIn }: GameDetailCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const developer = game.involved_companies?.find(
@@ -19,6 +21,10 @@ const LoggedInGameDetail = ({ game }: LoggedInGameDetailProps) => {
   const publisher = game.involved_companies?.find(
     (company) => company.publisher,
   );
+
+  const releaseDate: string = game.first_release_date
+    ? String(new Date(game.first_release_date * 1000).getFullYear())
+    : "Unknown";
 
   const artwork = game.artworks
     ?.filter((artwork) => artwork.width && artwork.height)
@@ -32,9 +38,9 @@ const LoggedInGameDetail = ({ game }: LoggedInGameDetailProps) => {
     })[0];
 
   return (
-    <main className="w-full p-2">
+    <div className="w-full p-2">
       {/* Card */}
-      <div className="border-border mx-auto flex h-auto max-w-6xl flex-col rounded-sm border">
+      <div className="mx-auto flex h-auto max-w-6xl flex-col rounded-sm">
         {/* Game cover and Title */}
         <div
           className="relative min-h-60 bg-cover bg-center bg-no-repeat py-12 sm:px-6"
@@ -44,7 +50,13 @@ const LoggedInGameDetail = ({ game }: LoggedInGameDetailProps) => {
         >
           <div className="absolute inset-0 bg-black/80"></div>
 
-          <div className="from-background absolute inset-x-0 bottom-0 h-26 bg-linear-to-t to-transparent"></div>
+          <div className="to-background absolute inset-x-0 top-0 h-26 bg-linear-to-t from-transparent" />
+
+          <div className="from-background absolute inset-y-0 right-0 w-26 bg-linear-to-l to-transparent" />
+
+          <div className="from-background absolute inset-y-0 left-0 w-26 bg-linear-to-r to-transparent" />
+
+          <div className="to-background absolute inset-x-0 bottom-0 h-60 bg-linear-to-b from-transparent" />
 
           <div className="relative z-10 flex w-full items-center gap-8 px-2 sm:px-0">
             <Image
@@ -58,9 +70,7 @@ const LoggedInGameDetail = ({ game }: LoggedInGameDetailProps) => {
             <div className="w-full space-y-2">
               <h1 className="text-2xl font-bold sm:text-4xl">{game.name}</h1>
               <span className="text-base sm:text-2xl">
-                {game.first_release_date
-                  ? new Date(game.first_release_date * 1000).getFullYear()
-                  : ""}
+                {releaseDate}
                 {" • "}
                 <span className="text-muted-foreground">
                   {developer?.company.name}
@@ -72,9 +82,24 @@ const LoggedInGameDetail = ({ game }: LoggedInGameDetailProps) => {
         <div className="flex flex-col gap-8 px-2 pb-6 sm:flex-row sm:px-6">
           {/* Button and Game details */}
           <div className="flex flex-col gap-4 sm:w-1/3">
-            <Button className={"border-border border p-2 py-6 sm:text-lg"}>
-              Log this game
-            </Button>
+            {!isLoggedIn && (
+              <div className="bg-secondary border-border flex flex-wrap items-center justify-center rounded-sm border p-2">
+                <Button variant={"link"} className={"h-auto px-1 text-base"}>
+                  <Link href="signup">Create an account</Link>
+                </Button>
+                <span> or </span>
+                <Button variant={"link"} className={"h-auto px-1 text-base"}>
+                  <Link href="login">Log in</Link>
+                </Button>
+                <span className="pb-1">to track this game</span>
+              </div>
+            )}
+
+            {isLoggedIn && (
+              <Button className={"border-border border p-2 py-6 sm:text-lg"}>
+                Log this game
+              </Button>
+            )}
 
             <div>
               <div className="space-y-2">
@@ -129,8 +154,8 @@ const LoggedInGameDetail = ({ game }: LoggedInGameDetailProps) => {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 
-export default LoggedInGameDetail;
+export default GameDetailCard;

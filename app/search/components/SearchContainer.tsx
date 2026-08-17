@@ -11,6 +11,9 @@ const SearchContainer = ({ game }: SearchContainerProps) => {
     throw new Error("Game does not have a type");
   }
   const type = GameType[game.game_type] ?? "Unknown";
+  const releaseDate: string = game.first_release_date
+    ? String(new Date(game.first_release_date * 1000).getFullYear())
+    : "Unknown";
 
   const visiblePlatforms = game.platforms?.slice(0, 3) ?? [];
   const remainingPlatforms =
@@ -28,7 +31,10 @@ const SearchContainer = ({ game }: SearchContainerProps) => {
         />
       </div>
       <div className="flex flex-col justify-center gap-2">
-        <h1 className="font-semibold sm:text-2xl">{game.name}</h1>
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <h1 className="font-semibold sm:text-2xl">{game.name}</h1>
+          <span className="text-muted-foreground text-sm">{releaseDate}</span>
+        </div>
         <div className="flex flex-wrap gap-2">
           <span className="bg-primary rounded-sm p-1 text-xs text-nowrap sm:px-2 sm:text-base">
             {type}

@@ -19,7 +19,7 @@ const PopularReviews = () => {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4">
         {mockReviews.map((review) => {
           const game = mockGames.find((game) => review.game_id === game.id);
           const user = mockUsers.find((user) => review.user_id === user.id);

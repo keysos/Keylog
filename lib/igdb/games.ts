@@ -125,6 +125,7 @@ export async function getGames(
 export async function SearchGame(
   gameQuery: string,
   limit: number,
+  offset: number,
 ): Promise<IGDBGame[]> {
   const query = `
   search "${gameQuery}";
@@ -137,13 +138,15 @@ export async function SearchGame(
     cover.url,
     total_rating_count,
     platforms.id,
-    platforms.name;
+    platforms.name,
+    first_release_date;
 
   where version_parent = null
     & game_type = (0, 1, 2, 4, 6, 8, 9, 10, 11)
     & cover.url != null;
 
   limit ${limit};
+  offset ${offset};
 `;
   const access_token = await getIGDBToken();
 

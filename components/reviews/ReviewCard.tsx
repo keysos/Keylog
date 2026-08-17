@@ -30,7 +30,7 @@ const ReviewCard = ({ review, game, user }: ReviewCardProps) => {
   return (
     <div
       key={review.id}
-      className="border-border bg-card flex w-full gap-4 rounded-sm border p-4"
+      className="border-border flex w-full gap-4 border-b py-4"
     >
       <div className="flex-1">
         <Link href="/">
