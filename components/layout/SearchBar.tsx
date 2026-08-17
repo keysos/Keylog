@@ -42,7 +42,7 @@ const SearchBar = () => {
     }
 
     const debounce = setTimeout(async () => {
-      const data = await searchGames(query, 20);
+      const data = await searchGames(query, 20, 0);
       setGames(data);
       setIsOpen(true);
     }, 300);
