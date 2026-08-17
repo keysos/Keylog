@@ -52,6 +52,8 @@ const SearchBar = () => {
     };
   }, [query]);
 
+  /* new fix */
+
   return (
     <div className="relative flex">
       <Input
