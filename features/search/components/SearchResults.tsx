@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-import { searchGames } from "@/lib/igdb/actions";
-import { IGDBGame } from "@/lib/igdb/type";
+import { searchGames } from "@/features/search/actions";
+import { IGDBGame } from "@/lib/igdb/types";
 
 import SearchContainer from "./SearchContainer";
 import { LoaderCircle } from "lucide-react";

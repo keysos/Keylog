@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { IGDBGame } from "@/lib/igdb/type";
+import { IGDBGame } from "@/lib/igdb/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -50,13 +50,13 @@ const GameDetailCard = ({ game, isLoggedIn }: GameDetailCardProps) => {
         >
           <div className="absolute inset-0 bg-black/80"></div>
 
-          <div className="to-background absolute inset-x-0 top-0 h-26 bg-linear-to-t from-transparent" />
+          <div className="absolute inset-x-0 top-0 h-26 bg-linear-to-t from-transparent to-background" />
 
-          <div className="from-background absolute inset-y-0 right-0 w-26 bg-linear-to-l to-transparent" />
+          <div className="absolute inset-y-0 right-0 w-26 bg-linear-to-l from-background to-transparent" />
 
-          <div className="from-background absolute inset-y-0 left-0 w-26 bg-linear-to-r to-transparent" />
+          <div className="absolute inset-y-0 left-0 w-26 bg-linear-to-r from-background to-transparent" />
 
-          <div className="to-background absolute inset-x-0 bottom-0 h-60 bg-linear-to-b from-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-60 bg-linear-to-b from-transparent to-background" />
 
           <div className="relative z-10 flex w-full items-center gap-8 px-2 sm:px-0">
             <Image
@@ -64,7 +64,7 @@ const GameDetailCard = ({ game, isLoggedIn }: GameDetailCardProps) => {
               width={300}
               height={300}
               alt={game.name}
-              className="border-border h-auto w-1/3 rounded-sm border object-contain shadow-2xl shadow-black/40 sm:w-1/6"
+              className="h-auto w-1/3 rounded-sm border border-border object-contain shadow-2xl shadow-black/40 sm:w-1/6"
             />
 
             <div className="w-full space-y-2">
@@ -83,20 +83,20 @@ const GameDetailCard = ({ game, isLoggedIn }: GameDetailCardProps) => {
           {/* Button and Game details */}
           <div className="flex flex-col gap-4 sm:w-1/3">
             {!isLoggedIn && (
-              <div className="bg-secondary border-border flex flex-wrap items-center justify-center rounded-sm border p-2">
+              <div className="flex flex-wrap items-center justify-center rounded-sm border border-border bg-secondary p-2">
                 <Button variant={"link"} className={"h-auto px-1 text-base"}>
-                  <Link href="signup">Create an account</Link>
+                  <Link href="/signup">Create an account</Link>
                 </Button>
                 <span> or </span>
                 <Button variant={"link"} className={"h-auto px-1 text-base"}>
-                  <Link href="login">Log in</Link>
+                  <Link href="/login">Log in</Link>
                 </Button>
                 <span className="pb-1">to track this game</span>
               </div>
             )}
 
             {isLoggedIn && (
-              <Button className={"border-border border p-2 py-6 sm:text-lg"}>
+              <Button className={"border border-border p-2 py-6 sm:text-lg"}>
                 Log this game
               </Button>
             )}
@@ -107,7 +107,7 @@ const GameDetailCard = ({ game, isLoggedIn }: GameDetailCardProps) => {
                   Game Details
                 </h2>
 
-                <div className="bg-secondary h-0.5 w-full"></div>
+                <div className="h-0.5 w-full bg-secondary"></div>
 
                 <div className="flex flex-col sm:text-lg">
                   <span className="text-muted-foreground">Publisher</span>
@@ -136,14 +136,14 @@ const GameDetailCard = ({ game, isLoggedIn }: GameDetailCardProps) => {
           {/* About */}
 
           <div className="w-full space-y-2">
-            <h2 className="text-muted-foreground text-lg font-semibold">
+            <h2 className="text-lg font-semibold text-muted-foreground">
               About
             </h2>
 
             <p className={isExpanded ? "" : "line-clamp-3"}>{game.summary}</p>
 
             <div className="flex items-center sm:hidden">
-              <div className="bg-secondary h-0.5 w-full"></div>
+              <div className="h-0.5 w-full bg-secondary"></div>
               <Button
                 variant={"ghost"}
                 onClick={() => setIsExpanded((prev) => !prev)}

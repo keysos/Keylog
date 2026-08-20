@@ -1,4 +1,4 @@
-import ReviewCard from "@/components/reviews/ReviewCard";
+import ReviewCard from "@/features/reviews/components/ReviewCard";
 import { mockReviews } from "@/mocks/data/mockReviews";
 
 import { mockUsers } from "@/mocks/data/mockUsers";
@@ -20,7 +20,7 @@ const PopularReviews = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4">
-        {mockReviews.map((review) => {
+        {mockReviews.slice(0, 4).map((review) => {
           const game = mockGames.find((game) => review.game_id === game.id);
           const user = mockUsers.find((user) => review.user_id === user.id);
 
@@ -32,6 +32,7 @@ const PopularReviews = () => {
               review={review}
               game={game}
               user={user}
+              className="min-h-50 border-b border-border"
             />
           );
         })}

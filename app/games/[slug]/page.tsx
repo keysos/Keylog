@@ -1,5 +1,5 @@
 import { getGames } from "@/lib/igdb/games";
-import GameDetailCard from "./components/GameDetailCard";
+import GameDetailCard from "@/features/games/components/GameDetailCard";
 
 type GameDetailProps = {
   params: Promise<{

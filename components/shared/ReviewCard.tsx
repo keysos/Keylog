@@ -6,7 +6,7 @@ import { useState } from "react";
 
 /* Components */
 import { Button } from "@/components/ui/button";
-import { RatingStars } from "@/app/games/components/RatingStars";
+import { RatingStars } from "@/components/shared/RatingStars";
 import placeholder from "@/assets/placeholder.png";
 
 /* Types */
@@ -30,14 +30,14 @@ const ReviewCard = ({ review, game, user }: ReviewCardProps) => {
   return (
     <div
       key={review.id}
-      className="border-border flex w-full gap-4 border-b py-4"
+      className="flex w-full gap-4 border-b border-border py-4"
     >
       <div className="flex-1">
         <Link href="/">
           <Image
             src={game?.cover_url ?? placeholder}
             alt={game?.title}
-            className="border-border w-full rounded-sm border-2"
+            className="w-full rounded-sm border-2 border-border"
             width={300}
             height={300}
           />
@@ -51,7 +51,7 @@ const ReviewCard = ({ review, game, user }: ReviewCardProps) => {
         <div>
           <RatingStars rating={review.rating} className="text-lg" />
         </div>
-        <div className="text-muted-foreground text-sm">
+        <div className="text-sm text-muted-foreground">
           <p className={isExpanded ? "" : "line-clamp-3"}>{review.content}</p>
 
           <div className="flex justify-end lg:hidden">

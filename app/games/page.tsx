@@ -1,8 +1,8 @@
-import GamesGrid from "./components/GamesGrid";
+import GamesGrid from "@/features/games/components/GamesGrid";
 
 import { GameSort, getGames } from "@/lib/igdb/games";
-import GamesSort from "./components/GamesSort";
-import { GamesPagination } from "./components/GamesPagination";
+import GamesSort from "@/features/games/components/GamesSort";
+import { GamesPagination } from "@/features/games/components/GamesPagination";
 
 type GamesProps = {
   searchParams: Promise<{
@@ -26,8 +26,8 @@ const Games = async ({ searchParams }: GamesProps) => {
   );
 
   return (
-    <div className="mx-auto mt-6 flex w-full max-w-6xl flex-col gap-3 px-4 sm:px-0">
-      <div className="text-muted-foreground flex items-center justify-between">
+    <div className="mx-auto mt-6 flex w-full max-w-6xl flex-col gap-3 px-4 sm:px-2">
+      <div className="flex items-center justify-between text-muted-foreground">
         <span className="flex h-full flex-col justify-end">
           {totalGames} games
         </span>

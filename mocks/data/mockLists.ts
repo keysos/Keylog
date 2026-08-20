@@ -1,4 +1,4 @@
-import type { List } from "@/mocks/types";
+import type { List } from "@/types";
 
 export const mockLists: List[] = [
   {

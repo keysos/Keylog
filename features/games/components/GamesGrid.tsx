@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { IGDBGame } from "@/lib/igdb/type";
+import { IGDBGame } from "@/lib/igdb/types";
 
 type GamesGridProps = {
   games: IGDBGame[];
@@ -14,7 +14,7 @@ const GamesGrid = ({ games }: GamesGridProps) => {
           <Link
             href={`/games/${game.slug}`}
             key={game.id}
-            className="bg-muted border-border group relative flex aspect-3/4 items-center overflow-hidden rounded-sm border"
+            className="group relative flex aspect-3/4 items-center overflow-hidden rounded-sm border border-border bg-muted"
           >
             <Image
               src={game.cover?.url ?? ""}

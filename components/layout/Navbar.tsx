@@ -17,7 +17,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className="relative bg-transparent">
+    <div className="relative px-2">
       <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-2 text-sm sm:px-0 sm:py-3 sm:text-base">
         {isLogged && (
           <Link href="/">

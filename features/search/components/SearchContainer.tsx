@@ -1,6 +1,6 @@
-import { IGDBGame } from "@/lib/igdb/type";
+import { IGDBGame } from "@/lib/igdb/types";
 import Image from "next/image";
-import { GameType } from "@/lib/igdb/type";
+import { GameType } from "@/lib/igdb/types";
 
 type SearchContainerProps = {
   game: IGDBGame;

@@ -10,7 +10,7 @@ type HomeProps = {
 
 const Home = ({ isLoggedIn }: HomeProps) => {
   return (
-    <div className="mt-16 mb-8 flex w-full max-w-6xl flex-col gap-12 px-4 sm:px-0 lg:mx-auto lg:mt-32">
+    <div className="mt-16 mb-8 flex w-full max-w-6xl flex-col gap-12 px-4 sm:px-2 lg:mx-auto lg:mt-32">
       {!isLoggedIn && <HeroSection />}
       {isLoggedIn && <UserOverview />}
       <TrendingGames />

@@ -1,4 +1,4 @@
-import type { UserGame } from "@/mocks/types";
+import type { UserGame } from "@/types";
 
 export const mockUserGames: UserGame[] = [
   {

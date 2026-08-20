@@ -1,5 +1,5 @@
 import { getIGDBToken, IGDB_URL } from "./client";
-import { IGDBGame } from "./type";
+import { IGDBGame } from "./types";
 import { normalizeIGDBArtwork, normalizeIGDBImage } from "./utils";
 
 export type GameSort = "popularity" | "release_date" | "rating" | "game_title";
@@ -122,7 +122,7 @@ export async function getGames(
   };
 }
 
-export async function SearchGame(
+export async function searchIGDBGames(
   gameQuery: string,
   limit: number,
   offset: number,

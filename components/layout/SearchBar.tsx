@@ -1,11 +1,11 @@
 import { Input } from "@/components/ui/input";
-import { IGDBGame } from "@/lib/igdb/type";
+import { IGDBGame } from "@/lib/igdb/types";
 import { Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { searchGames } from "@/lib/igdb/actions";
+import { searchGames } from "@/features/search/actions";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");

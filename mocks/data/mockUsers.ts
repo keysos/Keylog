@@ -1,4 +1,4 @@
-import type { User } from "@/mocks/types";
+import type { User } from "@/types";
 
 import profile_placeholder from "@/assets/profile_picture.jpg";
 import banner_placeholder from "@/assets/profile_banner.jpg";

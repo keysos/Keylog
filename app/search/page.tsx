@@ -1,5 +1,5 @@
-import { searchGames } from "@/lib/igdb/actions";
-import SearchResults from "./components/SearchResults";
+import { searchGames } from "@/features/search/actions";
+import SearchResults from "@/features/search/components/SearchResults";
 
 type SearchPageProps = {
   searchParams: Promise<{
@@ -20,7 +20,7 @@ const SearchPage = async ({ searchParams }: SearchPageProps) => {
         Results for <span className="text-primary">{query}</span>
       </h1>
 
-      <SearchResults query={query} initialGames={games} />
+      <SearchResults key={query} query={query} initialGames={games} />
     </div>
   );
 };
