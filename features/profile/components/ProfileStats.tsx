@@ -1,55 +1,30 @@
-import { mockUserGames } from "@/mocks/data/mockUserGames";
-
-type ProfileStatsProps = {
-  userId: number;
-};
-
-const ProfileStats = ({ userId }: ProfileStatsProps) => {
-  const userGames = mockUserGames.filter(
-    (userGame) => userGame.user_id === userId,
+import { createClient } from "@/lib/supabase/server";
+export default async function ProfileStats({ userId }: { userId: string }) {
+  const db = await createClient();
+  const statuses = ["completed", "playing", "backlog", "dropped"] as const;
+  const counts = await Promise.all(
+    statuses.map(async (status) => {
+      const { count, error } = await db
+        .from("user_games")
+        .select("*", { count: "exact", head: true })
+        .eq("user_id", userId)
+        .eq("status", status);
+      if (error) throw error;
+      return count ?? 0;
+    }),
   );
-
-  const played = userGames.filter((game) => game.status === "playing").length;
-
-  const backlogged = userGames.filter(
-    (game) => game.status === "backlog",
-  ).length;
-
-  const dropped = userGames.filter((game) => game.status === "dropped").length;
-
   return (
-    <div className="flex justify-center gap-8 border-b border-border py-6">
-      <div className="flex w-1/3 flex-col items-center text-center">
-        <h3 className="text-4xl font-bold sm:text-6xl">
-          {String(played).padStart(3, "0")}
-        </h3>
-
-        <span className="text-sm text-muted-foreground sm:text-lg">
-          Games Played
-        </span>
-      </div>
-
-      <div className="flex w-1/3 flex-col items-center text-center">
-        <h3 className="text-4xl font-bold sm:text-6xl">
-          {String(backlogged).padStart(3, "0")}
-        </h3>
-
-        <span className="text-sm text-muted-foreground sm:text-lg">
-          Games Logged
-        </span>
-      </div>
-
-      <div className="flex w-1/3 flex-col items-center text-center">
-        <h3 className="text-4xl font-bold sm:text-6xl">
-          {String(dropped).padStart(3, "0")}
-        </h3>
-
-        <span className="text-sm text-muted-foreground sm:text-lg">
-          Games Dropped
-        </span>
-      </div>
+    <div className="grid grid-cols-2 gap-5 border-b border-border py-6 sm:grid-cols-4">
+      {statuses.map((status, i) => (
+        <div key={status} className="text-center">
+          <p className="text-3xl font-bold sm:text-4xl">
+            {String(counts[i]).padStart(3, "0")}
+          </p>
+          <p className="mt-1 text-sm text-muted-foreground capitalize">
+            {status}
+          </p>
+        </div>
+      ))}
     </div>
   );
-};
-
-export default ProfileStats;
+}

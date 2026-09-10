@@ -26,15 +26,15 @@ export default function MobileMenu({
       <div
         className={`absolute top-full left-0 z-50 flex w-full flex-col transition-all duration-300 sm:hidden ${isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"}`}
       >
-        <div className="bg-background flex flex-col gap-2 border-b-2 p-2">
+        <div className="flex flex-col gap-2 border-b-2 bg-background p-2">
           <Link
-            className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-sm p-2 text-center"
+            className="rounded-sm bg-primary p-2 text-center text-primary-foreground hover:bg-primary/80"
             href="/login"
           >
             Log In
           </Link>
           <Link
-            className="bg-primary text-primary-foreground hover:bg-primary/80 rounded-sm p-2 text-center"
+            className="rounded-sm bg-primary p-2 text-center text-primary-foreground hover:bg-primary/80"
             href="/signup"
           >
             Sign Up

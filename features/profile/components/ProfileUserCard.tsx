@@ -1,48 +1,39 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { FaSteam } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { FiEdit2 } from "react-icons/fi";
 import Image from "next/image";
+import Link from "next/link";
+import { currentUser } from "@/lib/data";
 import type { User } from "@/types";
-
-type ProfileUserCardProps = {
-  user: User;
-};
-
-const ProfileUserCard = ({ user }: ProfileUserCardProps) => {
+export default async function ProfileUserCard({ user }: { user: User }) {
+  const viewer = await currentUser();
   return (
-    <div className="flex gap-6">
-      <Image
-        src={user.avatar_url ?? ""}
-        alt={user.display_name ?? "username profile pictures"}
-        width={80}
-        height={80}
-        className="h-24 w-24 rounded-sm"
-      />
-
-      <div className="flex w-full flex-col justify-center gap-2">
-        <h1 className="text-xl font-semibold">{user.display_name}</h1>
-
-        <div className="text-muted-foreground flex items-center justify-between gap-2">
-          {/* Social Networks */}
-          <div className="flex gap-4">
-            <Link href="/" className="hover:text-foreground">
-              <FaSteam />
-            </Link>
-
-            <Link href="/" className="hover:text-foreground">
-              <FaXTwitter />
-            </Link>
-          </div>
-
-          <Button variant={"ghost"} size={"icon"} className={"p-0"}>
-            <FiEdit2 />
-          </Button>
+    <div className="flex items-center gap-4 py-3">
+      {user.avatar_url ? (
+        <Image
+          src={user.avatar_url}
+          alt={`${user.username}'s avatar`}
+          width={88}
+          height={88}
+          unoptimized
+          className="h-20 w-20 rounded-md object-cover"
+        />
+      ) : (
+        <div className="flex h-20 w-20 items-center justify-center rounded-md bg-secondary text-3xl font-semibold">
+          {user.username[0].toUpperCase()}
         </div>
+      )}
+      <div className="min-w-0 flex-1">
+        <h1 className="truncate text-2xl font-semibold">
+          {user.display_name || user.username}
+        </h1>
+        <p className="text-sm text-muted-foreground">@{user.username}</p>
       </div>
+      {viewer?.id === user.id && (
+        <Link
+          className="rounded-md border border-border px-3 py-2 text-sm hover:bg-accent"
+          href="/settings/profile"
+        >
+          Edit profile
+        </Link>
+      )}
     </div>
   );
-};
-
-export default ProfileUserCard;
+}

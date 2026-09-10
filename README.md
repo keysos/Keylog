@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Keylog
 
-## Getting Started
+Next.js App Router + TypeScript + Tailwind + Supabase Auth, PostgreSQL and Storage. Real IGDB catalog integration. The existing navy/blue visual system and component layout are retained.
 
-First, run the development server:
+Start with **[SETUP.md](SETUP.md)**. This ZIP contains source, a pinned dependency lockfile, the SQL baseline, database authorization tests and setup instructions. No credentials, mock application data, node_modules or build output are included.
 
 ```bash
+npm ci
+# Copy .env.example to .env.local and set your values.
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Email/password signup, confirmation, login, logout and password reset.
+- Cookie-based SSR sessions, refreshed by `proxy.ts`; server operations verify the current user.
+- Public profiles, editable username/display name/bio, avatar upload/removal and up to five favorites.
+- Game status, half-star ratings, dates, review publishing/editing/deletion.
+- Private/public lists, game search/add/remove, owner-only per-game hide/reveal.
+- Paginated profile games, reviews, lists and list contents; status filters run before pagination.
+- Real empty/error/loading states, responsive menus and keyboard focus states.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Code map
 
-## Learn More
+- `lib/supabase/`: browser/server clients, database types.
+- `lib/data.ts`: request-local authenticated queries.
+- `lib/igdb/`: trusted server-side IGDB lookup and catalog persistence.
+- `features/auth/`, `features/profile/`, `features/lists/`, `features/games/`: features and mutations.
+- `supabase/schema.sql`: transactional baseline with RLS, indexes, triggers and Storage rules.
+- `tests/database.mjs`: authorization/constraint tests using an isolated PostgreSQL-compatible PGlite database.
 
-To learn more about Next.js, take a look at the following resources:
+The server secret is used only for inserting trusted game metadata fetched from IGDB. Every user-owned write uses the user's authenticated Supabase client and RLS. No user email is stored in a public profile.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Verification
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+```
 
-## Deploy on Vercel
+Database test (optional development dependency; does not connect to your hosted database):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm install --no-save --package-lock=false @electric-sql/pglite@0.5.8
+node tests/database.mjs
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See SETUP.md for hosted email, Storage and two-user verification steps. The connected Supabase integration returned no accessible projects during implementation; no hosted schema was changed.

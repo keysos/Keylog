@@ -3,10 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const ProfileNavbar = () => {
+const ProfileNavbar = ({ username }: { username: string }) => {
   const pathname = usePathname();
-
-  const username = "keysos";
 
   const tabs = [
     { label: "Profile", href: `/users/${username}` },
@@ -16,7 +14,7 @@ const ProfileNavbar = () => {
   ];
 
   return (
-    <div className="text-muted-foreground flex gap-2 text-center">
+    <div className="flex gap-2 text-center text-muted-foreground">
       {tabs.map((tab) => {
         const isActive = pathname === tab.href;
 
@@ -24,14 +22,14 @@ const ProfileNavbar = () => {
           <Link
             key={tab.href}
             href={tab.href}
-            className={`hover:text-foreground relative w-full p-2 ${
+            className={`relative w-full p-2 hover:text-foreground ${
               isActive ? "text-foreground" : ""
             }`}
           >
             {tab.label}
 
             {isActive && (
-              <div className="bg-primary absolute bottom-0 left-1/4 h-0.5 w-1/2" />
+              <div className="absolute bottom-0 left-1/4 h-0.5 w-1/2 bg-primary" />
             )}
           </Link>
         );

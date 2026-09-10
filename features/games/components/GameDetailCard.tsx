@@ -1,5 +1,6 @@
 "use client";
 
+import placeholder from "@/assets/placeholder.png";
 import { Button } from "@/components/ui/button";
 import { IGDBGame } from "@/lib/igdb/types";
 import Image from "next/image";
@@ -60,7 +61,7 @@ const GameDetailCard = ({ game, isLoggedIn }: GameDetailCardProps) => {
 
           <div className="relative z-10 flex w-full items-center gap-8 px-2 sm:px-0">
             <Image
-              src={game.cover?.url ?? ""}
+              src={game.cover?.url ?? placeholder}
               width={300}
               height={300}
               alt={game.name}
@@ -96,9 +97,12 @@ const GameDetailCard = ({ game, isLoggedIn }: GameDetailCardProps) => {
             )}
 
             {isLoggedIn && (
-              <Button className={"border border-border p-2 py-6 sm:text-lg"}>
+              <a
+                href="#game-actions"
+                className="rounded-md bg-primary px-4 py-3 text-center text-white hover:bg-primary/90"
+              >
                 Log this game
-              </Button>
+              </a>
             )}
 
             <div>
@@ -142,7 +146,7 @@ const GameDetailCard = ({ game, isLoggedIn }: GameDetailCardProps) => {
 
             <p className={isExpanded ? "" : "line-clamp-3"}>{game.summary}</p>
 
-            <div className="flex items-center sm:hidden">
+            <div className="flex items-center">
               <div className="h-0.5 w-full bg-secondary"></div>
               <Button
                 variant={"ghost"}

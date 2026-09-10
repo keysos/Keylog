@@ -1,70 +1,87 @@
 "use client";
-
 import Link from "next/link";
-import MobileMenu from "./MobileMenu";
-import logo from "@/assets/logo.svg";
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.svg";
 import SearchBar from "./SearchBar";
-
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const isLogged = true;
-
-  function handleClick() {
-    setIsOpen((prev) => !prev);
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/features/auth/components/AuthProvider";
+import { createClient } from "@/lib/supabase/client";
+export default function Navbar() {
+  const [open, setOpen] = useState(false),
+    [error, setError] = useState("");
+  const { user } = useAuth();
+  const router = useRouter();
+  async function logout() {
+    try {
+      const { error } = await createClient().auth.signOut();
+      if (error) throw error;
+      setOpen(false);
+      router.replace("/");
+      router.refresh();
+    } catch {
+      setError("Unable to log out. Try again.");
+    }
   }
-
+  const links = (
+    <>
+      {user ? (
+        <>
+          <Link href="/account" onClick={() => setOpen(false)}>
+            Profile
+          </Link>
+          <Button variant="ghost" onClick={logout}>
+            Log out
+          </Button>
+        </>
+      ) : (
+        <>
+          <Link href="/login" onClick={() => setOpen(false)}>
+            Log in
+          </Link>
+          <Link href="/signup" onClick={() => setOpen(false)}>
+            Sign up
+          </Link>
+        </>
+      )}
+    </>
+  );
   return (
-    <div className="relative px-2">
-      <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-2 text-sm sm:px-0 sm:py-3 sm:text-base">
-        {isLogged && (
-          <Link href="/">
-            <Image
-              src={logo}
-              alt="Keylog"
-              className="h-8 w-18"
-              loading="eager"
-            />
-          </Link>
-        )}
-
-        {!isLogged && <div></div>}
-
-        <div className="flex items-center gap-4">
-          <Link
-            href="/games"
-            className="text-muted-foreground hover:text-foreground transition-colors duration-300"
-          >
-            Games
-          </Link>
-          <Link
-            className="text-muted-foreground hover:text-foreground hidden transition-colors duration-300 sm:flex"
-            href="/login"
-          >
-            Log In
-          </Link>
-          <Link
-            className="text-muted-foreground hover:text-foreground hidden transition-colors duration-300 sm:flex"
-            href="/signup"
-          >
-            Sign Up
-          </Link>
-
-          <div className="hidden sm:block">
+    <header className="relative border-b border-border/60 px-4">
+      <nav
+        aria-label="Main navigation"
+        className="mx-auto flex max-w-6xl items-center justify-between gap-4 py-3"
+      >
+        <Link href="/">
+          <Image src={logo} alt="Keylog" className="h-8 w-18" priority />
+        </Link>
+        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+          <Link href="/games">Games</Link>
+          <div className="hidden items-center gap-4 sm:flex">
+            {links}
             <SearchBar />
           </div>
-
-          <MobileMenu
-            handleClick={handleClick}
-            isOpen={isOpen}
-            className="text-muted-foreground hover:bg-accent hover:text-foreground cursor-pointer sm:hidden"
-          />
+          <Button
+            className="sm:hidden"
+            size="icon"
+            variant="ghost"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+          >
+            {open ? <X /> : <Menu />}
+          </Button>
         </div>
       </nav>
-    </div>
+      {open && (
+        <div className="absolute top-full left-0 z-50 flex w-full flex-col gap-4 border-b border-border bg-background p-4 sm:hidden">
+          {links}
+          <SearchBar />
+        </div>
+      )}
+      {error && <p role="alert">{error}</p>}
+    </header>
   );
-};
-
-export default Navbar;
+}

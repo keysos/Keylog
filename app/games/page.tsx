@@ -16,8 +16,12 @@ const Games = async ({ searchParams }: GamesProps) => {
 
   const params = await searchParams;
 
-  const sort = params.sort ?? "popularity";
-  const currentPage = Number(params.page ?? 1);
+  const sort = ["popularity", "release_date", "rating", "game_title"].includes(
+    params.sort ?? "",
+  )
+    ? params.sort!
+    : "popularity";
+  const currentPage = Math.max(1, Math.floor(Number(params.page) || 1));
 
   const { games, totalGames } = await getGames(
     sort as GameSort,
@@ -31,7 +35,7 @@ const Games = async ({ searchParams }: GamesProps) => {
         <span className="flex h-full flex-col justify-end">
           {totalGames} games
         </span>
-        <GamesSort defaultValue="popularity" />
+        <GamesSort defaultValue={sort} />
       </div>
 
       <GamesGrid games={games} />

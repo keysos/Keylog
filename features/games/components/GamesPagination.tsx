@@ -37,8 +37,6 @@ export function GamesPagination({
     router.replace(`${pathname}?${params.toString()}`);
   }
 
-  console.log(pages);
-
   return (
     <div className="flex items-center justify-between gap-2">
       <Button

@@ -1,16 +1,20 @@
+import type { Game } from "./game";
 export interface List {
-  id: number;
-  user_id: number;
-  name: string;
+  id: string;
+  user_id: string;
+  title: string;
   description: string | null;
-  is_public: boolean;
+  is_private: boolean;
   created_at: string;
   updated_at: string;
 }
-
 export interface ListGame {
-  list_id: number;
+  id: string;
+  list_id: string;
   game_id: number;
-  position: number | null;
+  is_hidden: boolean;
   added_at: string;
 }
+export type ListWithGames = List & {
+  list_games: (ListGame & { games: Game })[];
+};

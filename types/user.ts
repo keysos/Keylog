@@ -1,18 +1,10 @@
 export interface User {
-  id: number;
+  id: string;
   username: string;
-  email: string;
   display_name: string | null;
-  bio: string | null;
   avatar_url: string | null;
-  banner_url: string | null;
+  bio: string | null;
+  favorite_game_id: number | null;
   created_at: string;
-  stats: {
-    played: number;
-    playing: number;
-    backlog: number;
-    dropped: number;
-    reviews: number;
-    lists: number;
-  };
+  updated_at: string;
 }

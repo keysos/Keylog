@@ -7,7 +7,11 @@ type RatingStarsProps = {
 
 export function RatingStars({ rating, className }: RatingStarsProps) {
   return (
-    <div className={`text-primary flex ${className}`}>
+    <div
+      role="img"
+      aria-label={`${rating} out of 5 stars`}
+      className={`flex text-primary ${className}`}
+    >
       {Array.from({ length: 5 }, (_, index) => {
         const star = index + 1;
 

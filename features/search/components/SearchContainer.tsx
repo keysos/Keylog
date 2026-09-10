@@ -1,3 +1,4 @@
+import placeholder from "@/assets/placeholder.png";
 import { IGDBGame } from "@/lib/igdb/types";
 import Image from "next/image";
 import { GameType } from "@/lib/igdb/types";
@@ -7,10 +8,7 @@ type SearchContainerProps = {
 };
 
 const SearchContainer = ({ game }: SearchContainerProps) => {
-  if (game.game_type === undefined) {
-    throw new Error("Game does not have a type");
-  }
-  const type = GameType[game.game_type] ?? "Unknown";
+  const type = GameType[game.game_type ?? 0] ?? "Unknown";
   const releaseDate: string = game.first_release_date
     ? String(new Date(game.first_release_date * 1000).getFullYear())
     : "Unknown";
@@ -20,36 +18,36 @@ const SearchContainer = ({ game }: SearchContainerProps) => {
     (game.platforms?.length ?? 0) - visiblePlatforms.length;
 
   return (
-    <div className="border-border flex w-full gap-2 border-b py-2 sm:gap-4">
+    <div className="flex w-full gap-2 border-b border-border py-2 sm:gap-4">
       <div className="relative aspect-3/4 w-24 shrink-0 p-4 sm:w-30">
         <Image
-          src={game.cover?.url ?? ""}
+          src={game.cover?.url ?? placeholder}
           alt={game.name}
           width={300}
           height={300}
-          className="border-border rounded-sm border"
+          className="rounded-sm border border-border"
         />
       </div>
       <div className="flex flex-col justify-center gap-2">
         <div className="flex flex-col gap-2 sm:flex-row">
           <h1 className="font-semibold sm:text-2xl">{game.name}</h1>
-          <span className="text-muted-foreground text-sm">{releaseDate}</span>
+          <span className="text-sm text-muted-foreground">{releaseDate}</span>
         </div>
         <div className="flex flex-wrap gap-2">
-          <span className="bg-primary rounded-sm p-1 text-xs text-nowrap sm:px-2 sm:text-base">
+          <span className="rounded-sm bg-primary p-1 text-xs text-nowrap sm:px-2 sm:text-base">
             {type}
           </span>
           {visiblePlatforms.map((platform) => (
             <span
               key={platform.id}
-              className="bg-secondary rounded-sm p-1 text-xs sm:px-2 sm:text-base"
+              className="rounded-sm bg-secondary p-1 text-xs sm:px-2 sm:text-base"
             >
               {platform.name}
             </span>
           ))}
 
           {remainingPlatforms > 0 && (
-            <span className="text-muted-foreground rounded-sm p-1 text-xs sm:px-2 sm:text-base">
+            <span className="rounded-sm p-1 text-xs text-muted-foreground sm:px-2 sm:text-base">
               +{remainingPlatforms} more
             </span>
           )}

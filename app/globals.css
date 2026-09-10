@@ -202,3 +202,25 @@ input:-webkit-autofill:active {
   background-color: var(--muted-foreground);
   border-radius: 9999px;
 }
+
+@layer base {
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring;
+  }
+  button:not(:disabled),
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+}
+@layer components {
+  .keylog-input {
+    @apply w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground;
+  }
+}

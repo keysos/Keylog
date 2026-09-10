@@ -1,43 +1,23 @@
-import React from "react";
-
+import { getGames } from "@/lib/igdb/games";
 import Link from "next/link";
-import Image from "next/image";
-import { mockGames } from "@/mocks/data/mockGames";
-import placeholder from "@/assets/placeholder.png";
-import { Button } from "@/components/ui/button";
-
-const TrendingGames = () => {
+import GamesGrid from "@/features/games/components/GamesGrid";
+export default async function TrendingGames() {
+  const { games } = await getGames("popularity", 1, 7);
   return (
-    <div className="border-b-border">
-      <div className="flex items-center justify-between py-1">
-        <h2 className="text-lg">Recently trending</h2>
-        <Button variant={"link"}>
-          <Link href="/games" className="text-muted-foreground">
-            See more
-          </Link>
-        </Button>
+    <section className="space-y-3">
+      <div className="flex justify-between">
+        <h2 className="text-lg">Popular games</h2>
+        <Link className="text-sm text-muted-foreground" href="/games">
+          See more
+        </Link>
       </div>
-
-      <div className="flex justify-between gap-2 sm:gap-4 md:gap-6">
-        {mockGames.slice(0, 7).map((game, index) => (
-          <div
-            key={game.id}
-            className={`${index >= 5 ? "hidden md:block" : ""}`}
-          >
-            <Link href="/">
-              <Image
-                className="border-border rounded-sm border"
-                src={game.cover_url ?? placeholder}
-                alt={game.title}
-                width={156}
-                height={212}
-              />
-            </Link>
-          </div>
-        ))}
-      </div>
-    </div>
+      {games.length ? (
+        <GamesGrid games={games} />
+      ) : (
+        <p className="text-sm text-muted-foreground">
+          No games in the catalog yet.
+        </p>
+      )}
+    </section>
   );
-};
-
-export default TrendingGames;
+}

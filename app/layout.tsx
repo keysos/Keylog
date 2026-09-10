@@ -1,32 +1,36 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Figtree } from "next/font/google";
+import { AuthProvider } from "@/features/auth/components/AuthProvider";
+import { currentUser } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Keylog",
   description: "Track your gaming journey.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await currentUser();
   return (
-    <html lang="en" className={cn("font-sans", figtree.variable)}>
+    <html lang="en" className={cn("font-sans")}>
       <body className="flex min-h-screen flex-col">
-        <Navbar />
+        <AuthProvider initialUser={user}>
+          <Navbar />
 
-        <main className="flex flex-1">{children}</main>
+          <main className="flex flex-1">{children}</main>
 
-        <Footer />
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

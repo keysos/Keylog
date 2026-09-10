@@ -13,12 +13,11 @@ export interface Game {
 }
 
 export interface UserGame {
-  id: number;
-  user_id: number;
+  id: string;
+  user_id: string;
   game_id: number;
   status: GameStatus;
   rating: number | null;
-  is_favorite: boolean;
   started_at: string | null;
   completed_at: string | null;
   created_at: string;

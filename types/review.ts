@@ -1,6 +1,6 @@
 export interface Review {
-  id: number;
-  user_id: number;
+  id: string;
+  user_id: string;
   game_id: number;
   rating: number;
   content: string;

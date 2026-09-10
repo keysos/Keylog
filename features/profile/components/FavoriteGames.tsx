@@ -1,47 +1,20 @@
-import { mockGames } from "@/mocks/data/mockGames";
-import { mockUserGames } from "@/mocks/data/mockUserGames";
-
-import Link from "next/link";
-import Image from "next/image";
-
-type FavoriteGamesProps = {
-  userId: number;
-};
-
-const FavoriteGames = ({ userId }: FavoriteGamesProps) => {
+import { createClient } from "@/lib/supabase/server";
+import GameCovers from "@/components/shared/GameCovers";
+import type { Game } from "@/types";
+export default async function FavoriteGames({ userId }: { userId: string }) {
+  const db = await createClient();
+  const { data, error } = await db
+    .from("favorites")
+    .select("games(*)")
+    .eq("user_id", userId)
+    .order("position");
+  if (error) throw error;
   return (
-    <div className="space-y-2 border-b border-border">
-      <h2 className="text-lg font-semibold sm:text-2xl">Favorite Games</h2>
-
-      <div className="mb-6 grid grid-cols-5 gap-2">
-        {mockUserGames
-          .filter((userGame) => userGame.user_id === userId)
-          .slice(0, 5)
-          .map((userGame) => {
-            const game = mockGames.find((game) => game.id === userGame.game_id);
-
-            if (!game) return null;
-
-            return (
-              <div
-                key={userGame.id}
-                className="relative aspect-3/4 w-full max-w-40"
-              >
-                <Link href="/">
-                  <Image
-                    src={game?.cover_url ?? ""}
-                    alt={game?.title ?? "No game"}
-                    className="h-auto rounded-sm border-2 border-border"
-                    width={300}
-                    height={300}
-                  />
-                </Link>
-              </div>
-            );
-          })}
-      </div>
-    </div>
+    <section className="space-y-3 border-b border-border pb-6">
+      <h2 className="text-xl font-semibold">Favorite games</h2>
+      <GameCovers
+        games={(data as unknown as { games: Game }[]).map((x) => x.games)}
+      />
+    </section>
   );
-};
-
-export default FavoriteGames;
+}
